@@ -1,23 +1,762 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+  
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.7;
+      color: #2c3e50;
+      background: #f4f6f9;
+    }
+    header, nav, section, footer {
+      padding: 30px;
+      max-width: 1200px;
+      margin: auto;
+      background: #ffffff;
+      margin-bottom: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+    header {
+      background: linear-gradient(135deg, #1f2d3d 0%, #34495e 100%);
+      color: #ffffff;
+      text-align: center;
+      padding: 50px 30px;
+    }
+    header h1 {
+      margin: 0 0 15px 0;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #f1c40f;
+      letter-spacing: -0.5px;
+    }
+    header p {
+      font-size: 1.1rem;
+      margin: 0;
+      color: #ecf0f1;
+    }
+    nav {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      padding: 15px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: #34495e;
+      margin: 0 12px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #e74c3c;
+    }
+    h2 {
+      font-size: 1.6rem;
+      border-left: 5px solid #3498db;
+      padding-left: 15px;
+      margin-bottom: 25px;
+      color: #2c3e50;
+    }
+    h3 {
+      font-size: 1.25rem;
+      color: #2c3e50;
+      margin-top: 25px;
+      margin-bottom: 12px;
+    }
+    p {
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    strong {
+      color: #e74c3c;
+      font-weight: 600;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 768px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card {
+      border: 1px solid #e2e8f0;
+      padding: 20px;
+      border-radius: 8px;
+      background: #fafbfc;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+    .cta {
+      display: inline-block;
+      background-color: #e74c3c;
+      color: #ffffff;
+      padding: 15px 40px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+      box-shadow: 0 4px 6px rgba(231, 76, 60, 0.2);
+    }
+    .cta:hover {
+      background-color: #c0392b;
+    }
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 25px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    th {
+      background-color: #f8f9fa;
+      color: #34495e;
+      font-weight: 700;
+    }
+    tr:hover {
+      background-color: #f1f5f9;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #34495e;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 1rem;
+      box-sizing: border-box;
+      background-color: #f8fafc;
+    }
+    form input:focus, form select:focus {
+      outline: none;
+      border-color: #3498db;
+      background-color: #ffffff;
+    }
+    form button {
+      margin-top: 15px;
+      width: 100%;
+      cursor: pointer;
+      border: none;
+    }
+    dl.faq dt {
+      font-weight: 700;
+      margin-top: 25px;
+      cursor: pointer;
+      color: #2980b9;
+      font-size: 1.1rem;
+      border-bottom: 1px dashed #cbd5e1;
+      padding-bottom: 8px;
+    }
+    dl.faq dd {
+      margin-left: 0;
+      margin-top: 10px;
+      color: #475569;
+      padding-left: 15px;
+      border-left: 3px solid #cbd5e1;
+    }
+    .svg-container {
+      text-align: center;
+      margin: 30px 0;
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+    .badge {
+      display: inline-block;
+      background: #e1f5fe;
+      color: #0288d1;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .interactive-box {
+      background: #ebf5fb;
+      padding: 25px;
+      border-radius: 8px;
+      border-left: 5px solid #2980b9;
+      margin: 25px 0;
+    }
+    .interactive-box h3 {
+      margin-top: 0;
+      color: #2980b9;
+    }
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .checklist-item input {
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+      cursor: pointer;
+    }
+    .external-links {
+      background: #f1f5f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 30px;
+    }
+    .external-links ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .external-links li {
+      margin-bottom: 10px;
+    }
+    .external-links a {
+      color: #2980b9;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .external-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "벤츠 자동차 보험 전문 비교 센터",
+    "image": "https://www.yourdomain.kr/images/benz-insurance-main.png",
+    "telephone": "1588-0000",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "서울특별시 중구 세종대로 110",
+      "addressLocality": "중구",
+      "addressRegion": "서울특별시",
+      "postalCode": "04524",
+      "addressCountry": "KR"
+    },
+    "url": "https://www.yourdomain.kr/benz-insurance",
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "priceRange": "₩₩₩",
+    "areaServed": "KR",
+    "description": "2026년 최신 벤츠 전 모델 대상 자동차 보험료 비교 분석 및 맞춤형 견적 산출 전문 서비스",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "벤츠 자동차 보험 맞춤 서비스",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "벤츠 모델별 예상 보험료 모의 계산"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "신규 가입 혜택 및 사은품 비교 상담"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "수입차 전문 특약 설계 가이드"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+
+<header id="상단">
+  <h1>벤츠 자동차 보험료 맞춤형 비교 및 가입 가이드</h1>
+  <p>2026년 최신 30여 개 벤츠 전 라인업의 모델별 평균 예상 비용과 커뮤니티 추천 팁 분석</p>
+  <a href="#무료견적신청" class="cta">실시간 맞춤 견적 확인하기</a>
+</header>
+
+<nav>
+  <a href="#모델분석">30대 대표 모델 비교</a>
+  <a href="#보험료요인">평균 비용 분석</a>
+  <a href="#장단점">장단점 및 차이점</a>
+  <a href="#커뮤니티">소셜 및 AI 추천 팁</a>
+  <a href="#모의계산">실시간 보험료 모의 계산</a>
+  <a href="#체크리스트">혜택 진단기</a>
+  <a href="#무료견적신청">상담 및 신청</a>
+  <a href="#자주묻는질문">자주 묻는 질문</a>
+</nav>
+
+<section id="도입" aria-label="벤츠 자동차 보험 개요">
+  <h2>벤츠 자동차 보험, 똑똑하게 가입하기 위해 반드시 알아야 할 사실</h2>
+  <p>
+    메르세데스 벤츠 차량은 뛰어난 성능과 브랜드 가치를 자랑하지만, 차량 가격이 높은 만큼 사고 시 수리비와 부품 비용 부담이 커 자동차 보험료 책정 단계에서 높은 등급의 할증 요율을 적용받게 됩니다. 2026년 새해를 맞이하여 보험사들의 수입차 요율 체계 변화에 대비하는 것이 합리적인 소비의 지름길입니다. 본 가이드에서는 벤츠의 다양한 모델별 평균적인 연간 예상 금액을 알아보고, 어떻게 하면 조금이라도 더 저렴한곳 혹은 싼곳을 찾아 합리적으로 전문 특약 혜택을 설계할 수 있는지 상세히 다룹니다.
+  </p>
+  <p>
+    보험개발원의 차량모델별 등급 평가 기준에 따르면 국산차 대비 외제차는 수리 단가가 높기 때문에 자기차량손해(자차) 담보의 비중이 전체 비용의 상당 부분을 차지합니다. 특히 신차를 신규로 가입할 때는 사고 이력이나 운전 경력이 부족할 경우 상상 이상의 예상 비용이 발생할 수 있습니다. 따라서 네이버, 구글, 유튜브 등 다양한 채널의 정보를 통합하고, 최근 많은 주목을 받는 제미나이(Gemini)와 챗지피티(ChatGPT) 같은 인공지능(AI) 솔루션을 활용해 최적의 견적 포인트를 도출해 내는 과정이 중요해졌습니다.
+  </p>
+</section>
+
+<section id="모델분석" aria-label="벤츠 모델별 보험료 분석">
+  <h2>벤츠 대표 모델 30개 라인업의 세부 분석</h2>
+  <p>
+    벤츠의 차량은 차종의 세그먼트와 연료 공급 장치 방식(내연기관 대 친환경 전기차)에 따라 보험료 차이점이 뚜렷하게 존재합니다. 아래에서는 국내에서 가장 흔하게 접할 수 있는 주요 차종 30여 가지를 구분하여 대략적인 보험 환경을 정리하였습니다.
+  </p>
+  
+  <div class="grid-container">
+    <div class="card">
+      <span class="badge">컴팩트 &amp; 세단 라인업</span>
+      <h3>A클래스 / B클래스 / C클래스 / CLA / CLS</h3>
+      <p>
+        A클래스와 B클래스는 엔트리 모델로써 차량 가격 자체는 낮지만, 상대적으로 젊은 층의 가입 비중이 높아 손해율에 따른 평균적인 보험료가 높은 편입니다. C클래스는 안정적인 요율을 유지하며, 쿠페형 세단인 CLA와 스타일리시한 CLS의 경우 스포티한 주행 성능 탓에 자차 비용이 다소 높게 잡히는 경향이 있습니다.
+      </p>
+    </div>
+    
+    <div class="card">
+      <span class="badge">비즈니스 &amp; 플래그십 세단</span>
+      <h3>E클래스 / S클래스 / 마이바흐 S클래스</h3>
+      <p>
+        벤츠의 핵심 베스트셀러인 E클래스는 국내 가입자가 가장 많아 데이터 축적이 잘 되어 있어, 비교적 안정적인 평균 견적 도출이 가능합니다. 반면 플래그십의 대명사인 S클래스와 초고가 세단 마이바흐 S클래스는 높은 신차 가액으로 인해 연간 자차 담보 금액만 수백만 원에 달하므로 할인 혜택 설계가 필수로 요구됩니다.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="badge">SUV &amp; 오프로드 라인업</span>
+      <h3>GLA / GLB / GLC / GLE / GLS / G클래스 / 마이바흐 GLS</h3>
+      <p>
+        GLA와 GLB는 패밀리카 수요가 많아 비교적 할인 특약(자녀 할인 등) 적용 확률이 높습니다. 베스트셀링 SUV인 GLC와 준대형 SUV인 GLE는 무난한 요율을 보이며, 대형인 GLS와 하이엔드 오프로더 G클래스(지바겐), 마이바흐 GLS는 차량 손해 요율 적용 시 최상위 등급에 해당하여 엄밀한 견적 비교가 수반되어야 합니다.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="badge">전기차 EQ 라인업</span>
+      <h3>EQA / EQB / EQE / EQS / EQE SUV / EQS SUV</h3>
+      <p>
+        전기차 모델의 경우, 고전압 배터리의 파손 시 교체 비용 이슈로 인해 일반 내연기관보다 평균 자차 비용이 20%에서 30%가량 높게 책정되는 차이점이 있습니다. EQA 및 EQB와 같은 준중형 전기차와 고급 세단인 EQE, EQS 및 해당 차량들의 SUV 버전은 특화된 전기차 전용 특약을 제공하는 전문 업체를 선택하는 것이 유리합니다.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="badge">고성능 &amp; 컨버터블 라인업</span>
+      <h3>AMG GT / SL / C클래스 카브리올레 / E클래스 카브리올레 / CLE 쿠페 / CLE 카브리올레 / GLC 쿠페 / GLE 쿠페</h3>
+      <p>
+        AMG GT나 SL과 같은 초고성능 스포츠카 계열 및 오픈에어링을 즐기는 카브리올레 계열(C클래스 카브리올레, E클래스 카브리올레, CLE 카브리올레) 및 스포티한 CLE 쿠페, 쿠페형 SUV 라인업(GLC 쿠페, GLE 쿠페)은 가속력과 주행 역동성으로 인해 손해율이 다소 높게 평가되는 단점이 존재합니다.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="badge">다목적 차량 라인업</span>
+      <h3>스프린터 / V클래스</h3>
+      <p>
+        국내외 의전 및 캠핑카 튜닝용으로 선호도가 높은 스프린터와 V클래스는 대형 특수 규격 차량으로 분류되어 가입 가능한 보험사의 제한이 따를 수 있습니다. 따라서 특수 승합 또는 화물 전용 비교 견적 전문 업체를 거쳐 인수 기준을 미리 파악해 두어야 불필요한 비용 낭비를 막을 수 있습니다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="보험료요인" aria-label="벤츠 연간 평균 보험료 분석">
+  <h2>벤츠 연간 평균 보험료 비교 데이터 (2026년 예상 기준)</h2>
+  <p>
+    아래 표는 운전 경력 5년 이상, 무사고 기준 30대 후반 가입자의 벤츠 주요 등급별 평균 연간 보험료 예상 수치를 도출한 통계치입니다. 개개인의 나이, 사고 이력, 선택 특약 옵션에 따라 실제 산출되는 금액은 상이하므로 참고용 지표로 활용하시기 바랍니다.
+  </p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>모델 계열</th>
+          <th>대표 차종 (예시)</th>
+          <th>신차가 평균 범위</th>
+          <th>연간 평균 예상 보험료</th>
+          <th>자차 담보 비중</th>
+          <th>주요 추천 특약</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>컴팩트 세단</td>
+          <td>A220, CLA250, C300</td>
+          <td>4,500 ~ 6,500만원</td>
+          <td>90 ~ 130만원</td>
+          <td>약 40%</td>
+          <td>티맵 안전운전, 커넥티드카 할인</td>
+        </tr>
+        <tr>
+          <td>비즈니스 세단</td>
+          <td>E200, E300, E450</td>
+          <td>7,000 ~ 12,000만원</td>
+          <td>120 ~ 180만원</td>
+          <td>약 50%</td>
+          <td>마일리지 특약, 블랙박스 할인</td>
+        </tr>
+        <tr>
+          <td>플래그십 세단</td>
+          <td>S450, S500, S580</td>
+          <td>15,000 ~ 24,000만원</td>
+          <td>190 ~ 290만원</td>
+          <td>약 65%</td>
+          <td>차량 가액 보상 특약, 무사고 할인</td>
+        </tr>
+        <tr>
+          <td>중소형 SUV</td>
+          <td>GLA250, GLB250, GLC300</td>
+          <td>6,000 ~ 8,500만원</td>
+          <td>100 ~ 150만원</td>
+          <td>약 45%</td>
+          <td>자녀 할인 특약, 첨단 안전장치</td>
+        </tr>
+        <tr>
+          <td>준대형 SUV</td>
+          <td>GLE300d, GLE450, GLS580</td>
+          <td>11,000 ~ 18,000만원</td>
+          <td>160 ~ 250만원</td>
+          <td>약 55%</td>
+          <td>대물 10억 확장, 긴급출동 긴 서비스</td>
+        </tr>
+        <tr>
+          <td>친환경 전기차</td>
+          <td>EQE350, EQS450</td>
+          <td>9,000 ~ 19,000만원</td>
+          <td>150 ~ 240만원</td>
+          <td>약 60%</td>
+          <td>전기차 배터리 전액 보상 특약</td>
+        </tr>
+        <tr>
+          <td>고성능 스포츠</td>
+          <td>AMG GT 43, SL63 AMG</td>
+          <td>14,000 ~ 23,000만원</td>
+          <td>250 ~ 400만원</td>
+          <td>약 70%</td>
+          <td>사고 이력 케어, 렌트카 동등 차종</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="svg-container">
+    <h3>연령별 평균 벤츠 자동차 보험료 트렌드 곡선 (예상치)</h3>
+    <svg viewBox="0 0 600 220" width="100%" height="220" style="background:#ffffff; border-radius:8px;">
+      <!-- X, Y Axes -->
+      <line x1="50" y1="180" x2="550" y2="180" stroke="#cbd5e1" stroke-width="2" />
+      <line x1="50" y1="20" x2="50" y2="180" stroke="#cbd5e1" stroke-width="2" />
+      
+      <!-- Grid Lines -->
+      <line x1="50" y1="140" x2="550" y2="140" stroke="#f1f5f9" stroke-width="1" />
+      <line x1="50" y1="100" x2="550" y2="100" stroke="#f1f5f9" stroke-width="1" />
+      <line x1="50" y1="60" x2="550" y2="60" stroke="#f1f5f9" stroke-width="1" />
+
+      <!-- Labels Y -->
+      <text x="15" y="145" font-size="10" fill="#64748b">100만원</text>
+      <text x="15" y="105" font-size="10" fill="#64748b">200만원</text>
+      <text x="15" y="65" font-size="10" fill="#64748b">300만원</text>
+      
+      <!-- Labels X -->
+      <text x="110" y="200" font-size="11" fill="#475569" text-anchor="middle">20대 초반</text>
+      <text x="210" y="200" font-size="11" fill="#475569" text-anchor="middle">20대 후반</text>
+      <text x="310" y="200" font-size="11" fill="#475569" text-anchor="middle">30대 중반</text>
+      <text x="410" y="200" font-size="11" fill="#475569" text-anchor="middle">40대 후반</text>
+      <text x="510" y="200" font-size="11" fill="#475569" text-anchor="middle">50대 이상</text>
+
+      <!-- Insurance Cost Line (Trend) -->
+      <path d="M 110 40 Q 210 110 310 130 T 510 140" fill="none" stroke="#e74c3c" stroke-width="3" />
+      
+      <!-- Data Points -->
+      <circle cx="110" cy="40" r="4" fill="#e74c3c" />
+      <circle cx="210" cy="110" r="4" fill="#e74c3c" />
+      <circle cx="310" cy="130" r="4" fill="#e74c3c" />
+      <circle cx="410" cy="135" r="4" fill="#e74c3c" />
+      <circle cx="510" cy="140" r="4" fill="#e74c3c" />
+
+      <!-- Annotations -->
+      <text x="110" y="25" font-size="10" fill="#e74c3c" font-weight="700" text-anchor="middle">초고가 구간</text>
+      <text x="310" y="115" font-size="10" fill="#34495e" font-weight="700" text-anchor="middle">안정세 진입</text>
+    </svg>
+    <p style="font-size: 0.85rem; color:#64748b; margin-top:10px; text-align:center;">
+      연령층이 낮을수록 손해율 부담으로 초기 가입 가격이 급격히 상승하며, 30대 중반 이후 부부 및 1인 한정 특약 적용 시 안정화되는 경향을 보입니다.
+    </p>
+  </div>
+</section>
+
+<section id="장단점" aria-label="벤츠 자동차 보험 가입 장단점">
+  <h2>벤츠 자동차 보험 가입 시 고려해야 할 장단점과 차이점</h2>
+  <p>
+    벤츠 보험 가입 시에는 단순 국산 차량과 비교하여 여러 가지 서비스 구조상의 이점과 함께, 비용 측면에서의 한계가 공존합니다. 이를 명확히 분석하여 불필요한 보장을 덜어내는 것이 중요합니다.
+  </p>
+
+  <h3>장점과 효율성</h3>
+  <p>
+    첫째, 대기업 손해보험사 전문 업체의 VIP 케어 서비스를 보다 적극적으로 누릴 수 있습니다. 긴급출동 시 견인 거리 확대 서비스나 외제차 전용 상담 부서 구축 등이 제공되는 사례가 많습니다. 둘째, 자차 담보 보장 범위에 벤츠 순정 정품 부품 사용 및 보증 기간 연장 프로그램을 탑재한 특약들이 신설되어 수리 만족도가 비교적 우수합니다.
+  </p>
+
+  <h3>단점과 한계점</h3>
+  <p>
+    가장 큰 단점은 무엇보다도 높은 가격 장벽입니다. 사고 시 발생하는 수리 렌트 비용이 국산차 대비 배 이상으로 크기 때문에 대물 보상 및 자상(자동차상해) 한도를 높일 수밖에 없어 기본 보험료 구조가 무겁게 다가옵니다. 특히 갓 20대 신규 운전자가 자차를 포함해 가입할 때는 금액 대비 효율이 떨어질 수 있습니다.
+  </p>
+
+  <h3>일반 국산차 보험과의 차이점</h3>
+  <p>
+    사고 시 부품 조달 대기 시간 동안 지급되는 렌트 차량의 등급 설정과 자차 한도 계산 방식에서 큰 차이점이 납니다. 수입 차량 요율 등급은 분기마다 재قي산되므로 신차 가격 변동 추이와 국내 부품 공급 안정성에 따라 매년 갱신 예상액이 상향 혹은 하향으로 엇갈릴 수 있습니다.
+  </p>
+</section>
+
+<section id="커뮤니티" aria-label="소셜 및 AI 추천 가이드">
+  <h2>소셜 미디어와 온라인 커뮤니티의 벤츠 보험료 팁</h2>
+  <p>
+    국내 주요 자동차 커뮤니티인 보배드림, 디시인사이드, 에펨코리아(펨코)의 수입차 포럼에서는 벤츠 보험 가입 시 불필요한 거품을 제거하기 위한 다양한 내돈내산 후기 정보들이 매일 공유되고 있습니다. 또한 최근에는 네이버 블로그나 유튜브의 영상 가이드는 물론 인스타그램, 페이스북, 트위터 같은 소셜 미디어를 통해서 보험 갱신 시 주어지는 주유권 증정 이벤트나 페이백 행사 소식이 실시간으로 확산합니다.
+  </p>
+  <p>
+    더 나아가 최근 스마트한 소비층은 제미나이(Gemini)나 챗지피티(ChatGPT) 같은 대화형 AI(인공지능) 솔루션을 활용하여 각 보험사의 약관 파일 정보를 직접 대조해 어떤 특약이 자신의 라이프스타일에 맞는지 꼼꼼하게 따져보고 있습니다. 예컨대 AI 엔진에 본인의 연간 주행거리와 나이 정보, 소유 중인 벤츠 모델명을 입력하여 가장 감면율이 높은 가이드라인을 간편하게 사전 분석받는 추세입니다.
+  </p>
+  <p>
+    커뮤니티 회원들의 조언에 의하면, 신규 가입 시 단순 가입 축하 사은품이나 현금지원, 상품권 제안에만 현혹되기보다는 1년 단위의 총납부 비용을 확인하는 것이 핵심이라고 조언합니다. 겉으로 드러나는 일시적 혜택보다 만기 시 마일리지 특약 환급률이나 안전장치 할인 등을 합산했을 때 실질적으로 더 싼곳이나 저렴한곳이 어디인지를 구별해 내는 지혜가 필수적입니다.
+  </p>
+</section>
+
+<section id="모의계산" class="interactive-box" aria-label="실시간 보험료 모의 계산기">
+  <h3>벤츠 자동차 보험료 실시간 자가 모의 계산기</h3>
+  <p>
+    본인의 나이대와 벤츠 세그먼트를 임의로 지정해 연간 예상 평균 비용이 얼마인지 즉석에서 시뮬레이션해 보세요. 체류하며 다양한 조건 값을 입력해 보시면 대략적인 견적 감각을 익힐 수 있습니다.
+  </p>
+
+  <div class="form-group">
+    <label for="user-age">가입자 연령대 설정</label>
+    <select id="user-age" onchange="calculateEstimatedPremium()">
+      <option value="20">만 21세 이하 (운전 경력 없음)</option>
+      <option value="26">만 26세 이상 (신규 가입)</option>
+      <option value="30" selected>만 30세 이상 (숙련 운전자)</option>
+      <option value="40">만 40세 이상 (부부 한정 가능)</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="car-segment">보유 또는 구매 예정 벤츠 세그먼트</label>
+    <select id="car-segment" onchange="calculateEstimatedPremium()">
+      <option value="A">A / B / C클래스 / CLA 쿠페</option>
+      <option value="E" selected>E클래스 / GLC SUV / EQE 세단</option>
+      <option value="S">S클래스 / GLE / EQS SUV</option>
+      <option value="AMG">AMG GT / 마이바흐 S클래스</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="accident-history">최근 3개년 사고 유무</label>
+    <select id="accident-history" onchange="calculateEstimatedPremium()">
+      <option value="none" selected>무사고 (연속 유지 중)</option>
+      <option value="one">대물 1건 (단순 접촉)</option>
+      <option value="heavy">대인/대물 혼합 복합 사고</option>
+    </select>
+  </div>
+
+  <div style="background:#ffffff; padding:15px; border-radius:6px; margin-top:20px; border:1px solid #cbd5e1;">
+    <p style="margin:0; font-weight:700; color:#2c3e50;">
+      1년 예상 평균 보험료: <span id="premium-result" style="color:#e74c3c; font-size:1.3rem;">1,500,000</span> 원 내외
+    </p>
+    <p style="font-size:0.85rem; margin:5px 0 0 0; color:#7f8c8d;">
+      이 결과는 자차 가입 조건 및 평균적인 공정 이율을 반영한 가상 시뮬레이션입니다. 상세 할인은 가입 단계에서 추가 적용됩니다.
+    </p>
+  </div>
+</section>
+
+<section id="체크리스트" aria-label="나에게 맞는 할인 특약 진단">
+  <h2>나에게 맞는 최적의 혜택 및 특약 자가 진단기</h2>
+  <p>
+    보험사에서 제공하는 다양한 특별약정 조항을 꼼꼼하게 챙길수록 실제 지출되는 돈은 눈에 띄게 줄어듭니다. 본인이 해당되는 항목에 체크를 진행해 최종 최적화 지수를 진단해 보세요.
+  </p>
+
+  <div class="checklist-item">
+    <input type="checkbox" id="chk-tmap" onclick="updateChecklistScore()">
+    <label for="chk-tmap">안전운전 점수 특약 활용 (티맵/카카오내비 70점 이상 충족 여부)</label>
+  </div>
+  <div class="checklist-item">
+    <input type="checkbox" id="chk-mileage" onclick="updateChecklistScore()">
+    <label for="chk-mileage">마일리지 주행거리 약정 가입 (연간 15,000km 이하로 운행하는가)</label>
+  </div>
+  <div class="checklist-item">
+    <input type="checkbox" id="chk-child" onclick="updateChecklistScore()">
+    <label for="chk-child">자녀 할인 특약 대상 여부 (태아 혹은 만 6세 이하 자녀 양육 여부)</label>
+  </div>
+  <div class="checklist-item">
+    <input type="checkbox" id="chk-safety" onclick="updateChecklistScore()">
+    <label for="chk-safety">순정 첨단 안전장치 장착 여부 (차선이탈방지, 전방충돌경고 내장)</label>
+  </div>
+  <div class="checklist-item">
+    <input type="checkbox" id="chk-blackbox" onclick="updateChecklistScore()">
+    <label for="chk-blackbox">블랙박스 상시 작동 및 통신형 모뎀 탑재 여부 (커넥티드 서비스 연동)</label>
+  </div>
+
+  <div style="background:#f8fafc; padding:15px; border-radius:6px; margin-top:15px; border:1px solid #e2e8f0; text-align:center;">
+    <p style="margin:0; font-weight:700; color:#34495e;">
+      나의 예상 특약 할인 적용 등급: <span id="score-result" style="color:#2980b9; font-size:1.2rem;">실버 레벨 (추가 할인 가능)</span>
+    </p>
+  </div>
+</section>
+
+<section id="무료견적신청" aria-label="무료 견적 신청 및 맞춤형 상담">
+  <h2>벤츠 자동차 보험 다이렉트 무료 견적 신청</h2>
+  <form action="#" method="POST" onsubmit="alert('가상의 접수가 완료되었습니다. (실제 서버로 전송되지 않습니다)'); return false;">
+    <p>아래 기본 인적 사항 및 차종을 남겨 주시면 국내 주요 손해보험 전문 업체의 가격을 분석해 안내해 드립니다.</p>
+    
+    <div class="form-group">
+      <label for="req-name">고객 성함</label>
+      <input type="text" id="req-name" placeholder="홍길동" required>
+    </div>
+
+    <div class="form-group">
+      <label for="req-phone">연락처</label>
+      <input type="tel" id="req-phone" placeholder="010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="req-car">관심 벤츠 차량 상세 모델</label>
+      <input type="text" id="req-car" placeholder="예: 벤츠 E300 4MATIC 익스클루시브" required>
+    </div>
+
+    <div class="form-group">
+      <label for="req-opt">주요 관심 혜택</label>
+      <select id="req-opt">
+        <option value="low-price">가장 비용이 저렴한 다이렉트 상품 위주</option>
+        <option value="gift">가입 사은품 및 주유권 이벤트 지원금 중심</option>
+        <option value="expert">보장 범위가 탄탄한 명품 수입차 전용 플랜</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="req-memo">기타 문의사항 (사고 이력 또는 운전자 지정 범위)</label>
+      <textarea id="req-memo" rows="3" placeholder="예: 부부 한정으로 가입 예정이며, 사고 이력이 1건 있습니다. 저렴한곳 위주로 비교해 주세요."></textarea>
+    </div>
+
+    <button type="submit" class="cta">무료 맞춤형 상담 견적 요청하기</button>
+  </form>
+</section>
+
+<section id="자주묻는질문" aria-label="자주 묻는 질문 FAQ">
+  <h2>자주 묻는 질문 (FAQ)</h2>
+  <dl class="faq">
+    <dt>Q1. 벤츠 자동차 보험 가입 시 가장 저렴하게 혜택을 챙기려면 어떻게 해야 하나요?</dt>
+    <dd>
+      다이렉트 인터넷 채널을 활용하는 것이 오프라인 지점보다 약 15~20% 저렴한곳을 선점할 수 있는 방법입니다. 아울러 블랙박스, 안전운전 점수, 자녀 할인 특약을 다각도로 중복 가입하고 각사 신규 혜택 상품권 이벤트를 대조해 보시기 바랍니다.
+    </dd>
+
+    <dt>Q2. 벤츠 전기차 모델(EQE, EQS 등)의 자차 부담 금액이 일반 내연기관보다 높은 이유는 무엇인가요?</dt>
+    <dd>
+      전기차에 핵심으로 탑재되는 배터리 어셈블리 세트의 교체 비용이 통상 수천만 원에 육박하기 때문입니다. 이에 따라 배터리 손상 시 전액을 신품 가격으로 대체 보장하는 전기차 특화 부속 특약 가입을 전문가들이 적극 추천합니다.
+    </dd>
+
+    <dt>Q3. 온라인 커뮤니티에서 흔히 말하는 무사고 할인 갱신 적용 시점은 언제인가요?</dt>
+    <dd>
+      대개 가입 이후 연속하여 사고가 발생하지 않고 1년 만기를 도래하면, 이듬해 갱신 시점부터 무사고 할인이 본격적으로 적용됩니다. 통상 무사고 3년이 누적되었을 때 최적의 보험 요율 할인을 경험하실 수 있습니다.
+    </dd>
+
+    <dt>Q4. 렌트카 동등 차종 지원 특약은 가입하는 것이 이득일까요?</dt>
+    <dd>
+      벤츠와 같은 대형 외제 세단 오너들의 내돈내산 후기를 분석해 보면 사고 시 동종의 동급 외제 수입 세단으로 원활하게 차량 대차를 받으려면 해당 특약을 걸어두시는 것이 차량 공백기 불편을 해소하는 장점으로 꼽힙니다.
+    </dd>
+  </dl>
+</section>
+
+<section id="참고정보" class="external-links" aria-label="신뢰할 수 있는 외부 링크 목록">
+  <h2>공인된 신뢰성 있는 정보 출처 안내</h2>
+  <p>
+    벤츠 보험 가입 및 수입차 세무 요율 설정에 관한 정밀한 규정 및 통계치는 공신력 있는 아래 정부 기관과 포털 사이트들을 참고하시면 유용합니다.
+  </p>
+  <ul>
+    <li>보험개발원 공식 홈페이지: <a href="https://www.kidi.or.kr" target="_blank" rel="noopener noreferrer">https://www.kidi.or.kr</a></li>
+    <li>금융감독원 금융소비자 정보 포털 파인: <a href="https://fine.fss.or.kr" target="_blank" rel="noopener noreferrer">https://fine.fss.or.kr</a></li>
+    <li>도로교통공단 정보광장: <a href="https://www.koroad.or.kr" target="_blank" rel="noopener noreferrer">https://www.koroad.or.kr</a></li>
+    <li>정부24 자동차 등록 원부 및 증명서 발급: <a href="https://www.gov24.go.kr" target="_blank" rel="noopener noreferrer">https://www.gov24.go.kr</a></li>
+    <li>나무위키 메르세데스-벤츠 상세 문서: <a href="https://namu.wiki/w/%EB%A9%94%EB%A5%B4%EC%84%B8%EB%8D%B0%EC%8A%A4-%EB%B2%A4%EC%B8%A0" target="_blank" rel="noopener noreferrer">https://namu.wiki/w/메르세데스-벤츠</a></li>
+  </ul>
+</section>
+
+<script>
+  function calculateEstimatedPremium() {
+    var age = document.getElementById('user-age').value;
+    var segment = document.getElementById('car-segment').value;
+    var accident = document.getElementById('accident-history').value;
+    
+    var basePremium = 1200000; // Base premium E클래스 만30대 무사고
+
+    // Age Factor
+    if (age === "20") {
+      basePremium = basePremium * 2.2;
+    } else if (age === "26") {
+      basePremium = basePremium * 1.4;
+    } else if (age === "30") {
+      basePremium = basePremium * 1.0;
+    } else if (age === "40") {
+      basePremium = basePremium * 0.9;
+    }
+
+    // Segment Factor
+    if (segment === "A") {
+      basePremium = basePremium * 0.8;
+    } else if (segment === "E") {
+      basePremium = basePremium * 1.0;
+    } else if (segment === "S") {
+      basePremium = basePremium * 1.7;
+    } else if (segment === "AMG") {
+      basePremium = basePremium * 2.3;
+    }
+
+    // Accident Factor
+    if (accident === "none") {
+      basePremium = basePremium * 0.95;
+    } else if (accident === "one") {
+      basePremium = basePremium * 1.25;
+    } else if (accident === "heavy") {
+      basePremium = basePremium * 1.6;
+    }
+
+    // Format Number
+    var finalResult = Math.round(basePremium);
+    document.getElementById('premium-result').innerText = finalResult.toLocaleString();
+  }
+
+  function updateChecklistScore() {
+    var score = 0;
+    if (document.getElementById('chk-tmap').checked) score += 20;
+    if (document.getElementById('chk-mileage').checked) score += 20;
+    if (document.getElementById('chk-child').checked) score += 20;
+    if (document.getElementById('chk-safety').checked) score += 20;
+    if (document.getElementById('chk-blackbox').checked) score += 20;
+
+    var resultText = "일반 다이렉트 (할인율 0% ~ 5%)";
+    if (score >= 20 && score <= 40) {
+      resultText = "브론즈 레벨 (할인율 약 10% 예상)";
+    } else if (score >= 60 && score <= 80) {
+      resultText = "실버 레벨 (할인율 약 20% 예상)";
+    } else if (score === 100) {
+      resultText = "골드 마스터 레벨 (할인율 최고 35% 이상 기대 가능)";
+    }
+
+    document.getElementById('score-result').innerText = resultText;
+  }
+</script>
+
+  
